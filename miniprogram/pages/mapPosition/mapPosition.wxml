@@ -1,0 +1,17 @@
+<!--miniprogram/pages/mapPosition/mapPosition.wxml-->
+<view class='map-container'>
+  <map
+  covers="{{covers}}"
+  latitude="{{latitude}}"
+  longitude="{{longitude}}"
+  markers="{{markers}}"
+  id='map'
+  class='map'
+  show-location></map>
+  <view class='btn-box'>
+    <button class='btn-item' type="primary" bindtap="getCenterLocation">获取位置</button>
+    <button class='btn-item' type="primary" bindtap="moveToLocation">移动位置</button>
+    <button class='btn-item' type="primary" bindtap="translateMarker">移动标注</button>
+    <button class='btn-item' type="primary" bindtap="includePoints">搜索</button>
+  </view>
+</view>

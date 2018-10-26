@@ -74,7 +74,7 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: (res) => {
 
         wx.showLoading({
           title: '上传中',
@@ -83,12 +83,13 @@ Page({
         const filePath = res.tempFilePaths[0]
         
         // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+        const cloudPath = 'my-image'+ new Date().getTime() + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
           success: res => {
             console.log('[上传文件] 成功：', res)
+            this.updateImgInfo(cloudPath),
 
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
@@ -116,5 +117,27 @@ Page({
       }
     })
   },
-
+  updateImgInfo: function (imgpath) {
+    const db = wx.cloud.database()
+    const imgId = res.fileID;
+    db.collection('imgInfo').add({
+      data: {
+        imgId: imgId
+      },
+      success: res => {
+        // 在返回结果中会包含新创建的记录的 _id
+        wx.showToast({
+          title: '新增记录成功',
+        })
+        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '新增记录失败'
+        })
+        console.error('[数据库] [新增记录] 失败：', err)
+      }
+    })
+  }
 })

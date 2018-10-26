@@ -1,0 +1,15 @@
+.edit-avatar{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  background-color:#aaa;
+  height:34px;
+  line-height:34px;
+}
+.user-avatar{
+  position: relative;
+  border-radius:50%;
+  overflow:hidden;
+}

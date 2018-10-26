@@ -1,0 +1,12 @@
+<view class="userinfo">
+    <view class='user-avatar' wx:if="{{userInfo.avatarUrl}}" bindtap='doUpload'>
+      <image src="{{avatarUrl}}"></image>
+      <view class='edit-avatar'>修改头像</view>
+    </view>
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    >获取用户信息</button>
+  </view>
